@@ -1,0 +1,52 @@
+body{
+  background: lightyellow;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+.to-do{
+  padding: 30px;
+  text-align: left;
+  margin: auto;
+  max-width: 500px;
+}
+.inputField{
+  padding: 5px;
+  margin: 5px 0;
+  font-size: 20px;
+  border: 1px solid rgb(1, 69, 92);
+}
+.btn{
+  background: rgb(1, 69, 92);
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  float: right;
+}
+.add-btn{
+  width: 80px;
+  height: 40px;
+  padding: 8px;
+}
+.dele-btn{
+  padding: 1px;
+  width: 30px;
+  height: 20px;
+  float: right;
+}
+.list{
+  width: 80%;
+  height: auto;
+  display: inline-block;
+  overflow-wrap: break-word;
+}
+.app-title{
+  text-align: center;
+  color: rgb(1, 69, 92);
+  font-size: 70px;
+}
+.container{
+  width: 500px;
+  margin: 0 auto;
+  border: 5px solid rgb(1, 69, 92);
+  border-radius: 10px;
+}
