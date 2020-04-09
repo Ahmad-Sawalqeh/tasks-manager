@@ -21,6 +21,7 @@ body{
   border: 0;
   border-radius: 5px;
   float: right;
+  margin: 0 5px;
 }
 .add-btn{
   width: 80px;
