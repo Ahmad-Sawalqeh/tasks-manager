@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 import './app.css';
 
 function App(){
@@ -13,7 +14,7 @@ function App(){
 
   function addToList(){
     const newItem = {
-      id: 1 + Math.random(),
+      id: uuid(),
       value: userInput
     }
     let newlist = [...list];
