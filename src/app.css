@@ -9,6 +9,10 @@ body{
   margin: auto;
   max-width: 500px;
 }
+.completed{
+  color: gray;
+  text-decoration: line-through;
+}
 .inputField{
   padding: 5px;
   margin: 5px 0;
@@ -21,20 +25,26 @@ body{
   border: 0;
   border-radius: 5px;
   float: right;
+  transition: 0.3s
+}
+.btn:hover{
+  cursor: pointer;
+  background: rgb(2, 133, 177);
 }
 .add-btn{
   width: 80px;
   height: 40px;
   padding: 8px;
 }
-.dele-btn{
+.dele-btn, .edit-btn{
   padding: 1px;
-  width: 30px;
+  margin: 0 2px;
+  width: 50px;
   height: 20px;
   float: right;
 }
 .list{
-  width: 80%;
+  width: 70%;
   height: auto;
   display: inline-block;
   overflow-wrap: break-word;
