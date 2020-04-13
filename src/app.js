@@ -5,6 +5,19 @@ import ToDoList from './components/todolist/todolist.js'
 // import FlipMove from 'react-flip-move';
 import './app.css';
 
+/*
+** To Do MVC
+  1. add item
+  2. delete item
+  3. complete one item
+  4. make all items complete, all at once
+  5. show only completed/active/all items
+  6. clear to do list
+  7. delete all completed items
+  8. display to do list
+  9. edit item
+*/
+
 function App(){
 
   const [userInput, setUserInput] = useState('');
@@ -40,8 +53,8 @@ function App(){
         newList.push(newItem);
       }
       setList(newList);
-      setUserInput('');
       setWantedListToShow(newList);
+      setUserInput('');
     }
   }
 
@@ -49,6 +62,7 @@ function App(){
     const newlist = [...list];
     const updateList = newlist.filter(val => val.id !== id);
     setList(updateList);
+    setWantedListToShow(updateList);
   }
 
   function itemToEdit(id){
@@ -70,6 +84,7 @@ function App(){
       return val;
     });
     setList(newList);
+    setWantedListToShow(newList);
   }
 
   function itemsToShow(choise){
@@ -90,15 +105,22 @@ function App(){
 
   function clearList(){
     setList([]);
+    setWantedListToShow([]);
   }
 
-  function hideAllItems(){
-    toggleItems ?       
-      setWantedListToShow(list)
-    :
-      setWantedListToShow([]);
-
+  function hideShowAllItems(){
+    toggleItems ? setWantedListToShow(list) : setWantedListToShow([]);
     setToggleItems(!toggleItems);
+  }
+
+  function allCompletedItem(){
+    const listCopy = [...list];
+    let newList = listCopy.map(val => {
+      val.complete = true;
+      return val;
+    });
+    setList(newList);
+    setWantedListToShow(newList);
   }
 
   return (
@@ -121,8 +143,9 @@ function App(){
                 itemsToShow={itemsToShow} 
                 wantedListToShow={wantedListToShow} 
                 deleteCompletedItem={deleteCompletedItem}
-                hideAllItems={hideAllItems}
+                hideShowAllItems={hideShowAllItems}
                 toggleItems={toggleItems}
+                allCompletedItem={allCompletedItem}
                 clearList={clearList}
               />
             :
