@@ -105,7 +105,7 @@ function App(){
 
   function clearList(){
     setList([]);
-    setWantedListToShow([]);
+    setWantedListToShow([]); 
   }
 
   function hideShowAllItems(){
