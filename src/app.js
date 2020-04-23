@@ -9,13 +9,13 @@ import './app.css';
 ** To Do MVC
   1. add item
   2. delete item
-  3. complete one item
-  4. make all items complete, all at once
-  5. show only completed/active/all items
-  6. clear to do list
+  3. edit item
+  4. clear to do list
+  5. complete one item
+  6. display to do list
   7. delete all completed items
-  8. display to do list
-  9. edit item
+  8. make all items complete, all at once
+  9. show only completed/active/all items
 */
 
 function App(){
@@ -33,29 +33,28 @@ function App(){
   }
 
   function addToList(){
-    if(userInput !== ''){
-      let newList;
-      if(isEditing && editingItemId !== 0){
-        let listCopy = [...list];
-        newList = listCopy.map(val => {
-          if(val.id === editingItemId) val.value = userInput;
-          return val;
-        });
-        setIsEditing(!isEditing);
-        setEditingItemId(0);
-      }else{
-        const newItem = {
-          id: randomId(),
-          complete : false,
-          value: userInput
-        }
-        newList = [...list];
-        newList.push(newItem);
+    if(userInput === '') return;
+    let newList;
+    if(isEditing && editingItemId !== 0){
+      let listCopy = [...list];
+      newList = listCopy.map(val => {
+        if(val.id === editingItemId) val.value = userInput;
+        return val;
+      });
+      setIsEditing(!isEditing);
+      setEditingItemId(0);
+    }else{
+      const newItem = {
+        id: randomId(),
+        complete : false,
+        value: userInput
       }
-      setList(newList);
-      setWantedListToShow(newList);
-      setUserInput('');
+      newList = [...list];
+      newList.push(newItem);
     }
+    setList(newList);
+    setWantedListToShow(newList);
+    setUserInput('');
   }
 
   function deleteItem(id){
@@ -135,7 +134,7 @@ function App(){
             isEditing={isEditing}
           />
           {
-            !isEditing && list[0] ?
+            !isEditing && list[0] &&
               <ToDoList list={list} 
                 completed={completed} 
                 deleteItem={deleteItem} 
@@ -148,8 +147,6 @@ function App(){
                 allCompletedItem={allCompletedItem}
                 clearList={clearList}
               />
-            :
-              null
           }
         </div>
       </div>
