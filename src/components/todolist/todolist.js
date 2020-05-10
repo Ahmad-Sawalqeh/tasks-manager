@@ -17,32 +17,7 @@ function ToDoList(props){
                     There is only <span className='text-primary'> {itemsLeft()} </span> items NOT completed yet
                 </p>
                 <ul className='list-group'>
-                {
-                    wantedListToShow.map((val, idx) =>{
-                        return(
-                            <>
-                                <div key={val.id} className='item d-flex justify-content-between'>
-                                    <li key={val.id} 
-                                        className={`m-3 list-group-item ${val.complete ? 'completed' : ''}`} 
-                                        onClick={() => completed(val.id)} >
-                                        {idx + 1}- {val.value}
-                                    </li>
-                                    {
-                                        val.complete ? 
-                                            <span className='lead text-danger font-weight-bolder mt-4'>completed</span>
-                                        :
-                                            <button className='btn btn-success mr-3 commonStyleButton' onClick={()=>itemToEdit(val.id)} >
-                                                Edit <i className="far fa-edit"></i>
-                                            </button>
-                                    }
-                                    <button className='btn btn-warning commonStyleButton' onClick={()=>deleteItem(val.id)} >
-                                        Delete <i className="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </>
-                        );
-                    })                   
-                }
+                    <List wantedListToShow={wantedListToShow} completed={completed} itemToEdit={itemToEdit} deleteItem={deleteItem} />
                 </ul>
                 <div className='text-center'>
                     <button className='btn btn-primary mb-3 mr-3' onClick={hideShowAllItems}>
@@ -60,6 +35,40 @@ function ToDoList(props){
             </div>
         </>
     );
+}
+
+const List = props => {
+    const { wantedListToShow, completed, itemToEdit, deleteItem } = props;
+    return (
+        <>
+            {
+                wantedListToShow.map((val, idx) =>{
+                    return(
+                        <>
+                            <div key={val.id} className='item d-flex justify-content-between'>
+                                <li key={val.id} 
+                                    className={`m-3 list-group-item ${val.complete ? 'completed' : ''}`} 
+                                    onClick={() => completed(val.id)} >
+                                    {idx + 1}- {val.value}
+                                </li>
+                                {
+                                    val.complete ? 
+                                        <span className='lead text-danger font-weight-bolder mt-4'>completed</span>
+                                    :
+                                        <button className='btn btn-success mr-3 commonStyleButton' onClick={()=>itemToEdit(val.id)} >
+                                            Edit <i className="far fa-edit"></i>
+                                        </button>
+                                }
+                                <button className='btn btn-warning commonStyleButton' onClick={()=>deleteItem(val.id)} >
+                                    Delete <i className="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </>
+                    );
+                })
+            }
+        </>
+    )
 }
 
 export default ToDoList;
