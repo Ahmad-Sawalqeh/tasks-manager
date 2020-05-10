@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d05d515d6c3fea1409a7641f8e4c631f",
+    "revision": "c1a0bb7c03c580b7cfc51e81bdd462e9",
     "url": "/simple-to-do/index.html"
   },
   {
-    "revision": "b1592446ff9acf656f69",
+    "revision": "240500feb5c3dd24bd2a",
     "url": "/simple-to-do/static/css/2.42e61dbe.chunk.css"
   },
   {
-    "revision": "98e40394a8242a907e1e",
+    "revision": "a481cd9f916bda2b1629",
     "url": "/simple-to-do/static/css/main.738d1227.chunk.css"
   },
   {
-    "revision": "b1592446ff9acf656f69",
-    "url": "/simple-to-do/static/js/2.744c78fc.chunk.js"
+    "revision": "240500feb5c3dd24bd2a",
+    "url": "/simple-to-do/static/js/2.ac5b160d.chunk.js"
   },
   {
     "revision": "9aeaf2fb3d1b41a751f2461cb4ed9e6f",
-    "url": "/simple-to-do/static/js/2.744c78fc.chunk.js.LICENSE.txt"
+    "url": "/simple-to-do/static/js/2.ac5b160d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "98e40394a8242a907e1e",
-    "url": "/simple-to-do/static/js/main.f31478a4.chunk.js"
+    "revision": "a481cd9f916bda2b1629",
+    "url": "/simple-to-do/static/js/main.42f67ee5.chunk.js"
   },
   {
     "revision": "e95a05f3af58590b6f1b",
