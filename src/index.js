@@ -1,5 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from "react-dom";
+import myStore from "./store/store.js";
+import { Provider } from "react-redux";
 import './index.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,10 +11,10 @@ import App from './app.js';
 
 function Root(){
   return (
-    <React.StrictMode>
+    <Provider store={myStore}>
       <App />
-    </React.StrictMode>
+    </Provider>
   );
 }
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+render(<Root />, document.getElementById('root'));
