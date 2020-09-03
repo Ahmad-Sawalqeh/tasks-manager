@@ -5,7 +5,7 @@ import { v4 as randomId } from 'uuid';
 import { setUserInput, setIsEditing, setEditingItemId, setList, setWantedListToShow, setToggleItems,  } from "./actions/actionCreater.js";
 
 import TaskForm from './components/taskForm';
-import TasksList from './components/tasksList';
+import TasksBoard from './components/tasksBoard';
 import './app.css';
 
 /*
@@ -132,7 +132,7 @@ function App(){
           />
           {
             !isEditing && list[0] &&
-              <TasksList list={list} 
+              <TasksBoard list={list} 
                 completed={completed} 
                 deleteItem={deleteItem} 
                 itemToEdit={itemToEdit} 

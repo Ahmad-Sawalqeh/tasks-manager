@@ -1,8 +1,8 @@
 import React from 'react';
-import List from './../list';
-import Control from './../control';
+import List from '../list';
+import Control from '../control';
 
-function TasksList(props){
+function TasksBoard(props){
 
     const { list, completed, deleteItem, itemToEdit, itemsToShow, wantedListToShow, deleteCompletedItem, hideShowAllItems, toggleItems, allCompletedItem, clearList } = props;
 
@@ -25,4 +25,4 @@ function TasksList(props){
     );
 }
 
-export default TasksList;
+export default TasksBoard;
