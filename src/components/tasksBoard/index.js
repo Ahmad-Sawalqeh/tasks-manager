@@ -1,10 +1,12 @@
 import React from 'react';
+import { useSelector } from "react-redux";
+
 import List from '../list';
 import Control from '../control';
 
-function TasksBoard(props){
+const TasksBoard = () => {
 
-    const { list, completed, deleteItem, itemToEdit, itemsToShow, wantedListToShow, deleteCompletedItem, hideShowAllItems, toggleItems, allCompletedItem, clearList } = props;
+    const { list } = useSelector(state => state);
 
     function itemsLeft (){
         return list.filter(item => !item.complete).length;
@@ -18,8 +20,8 @@ function TasksBoard(props){
                 <p className='lead text-center font-weight-bold'>
                     There is only <span className='text-primary'> {itemsLeft()} </span> items NOT completed yet
                 </p>
-                <List wantedListToShow={wantedListToShow} completed={completed} itemToEdit={itemToEdit} deleteItem={deleteItem} />
-                <Control wantedListToShow={wantedListToShow} hideShowAllItems={hideShowAllItems} itemsToShow={itemsToShow} toggleItems={toggleItems} deleteCompletedItem={deleteCompletedItem} clearList={clearList} allCompletedItem={allCompletedItem} />
+                <List />
+                <Control />
             </div>
         </>
     );

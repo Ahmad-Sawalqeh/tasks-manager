@@ -1,7 +1,46 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
-const List = props => {
-    const { wantedListToShow, completed, itemToEdit, deleteItem } = props;
+import { 
+  setUserInput, 
+  setIsEditing, 
+  setEditingItemId, 
+  setList, 
+  setWantedListToShow, 
+} from "./../../actions/actionCreater.js";
+
+const List = () => {
+
+    const { list, wantedListToShow, isEditing } = useSelector(state => state);
+    const dispatch = useDispatch();
+
+    function deleteItem(id){
+        const newlist = [...list];
+        const updateList = newlist.filter(val => val.id !== id);
+        dispatch(setList(updateList));
+        dispatch(setWantedListToShow(updateList));
+    }
+    
+    function itemToEdit(id){
+        const listCopy = [...list];
+        const editingItem = listCopy.find(val => val.id === id);
+        let itemvalue = editingItem.value;
+        let itemId = editingItem.id;
+        dispatch(setUserInput(itemvalue));
+        dispatch(setIsEditing(!isEditing));
+        dispatch(setEditingItemId(itemId));
+    }
+    
+    function completed(id){
+        const listCopy = [...list];
+        let newList = listCopy.map(val => {
+          if(val.id === id) val.complete = !val.complete;
+          return val;
+        });
+        dispatch(setList(newList));
+        dispatch(setWantedListToShow(newList));
+    }
+
     return (
         <ul className='list-group'>
             {
