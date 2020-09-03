@@ -10,6 +10,8 @@ import {
   setWantedListToShow, 
 } from "./../../actions/actionCreater.js";
 
+import './taskForm.css'
+
 const TaskForm = () => {
 
     const { userInput, list, isEditing, editingItemId, } = useSelector(state => state);
@@ -35,8 +37,11 @@ const TaskForm = () => {
       }else{
         const newItem = {
           id: randomId(),
-          complete : false,
-          value: userInput
+          value: userInput,
+          currentStatus: {
+            number: 0,
+            state : 'Not-Started'
+          }
         }
         newList = [...list];
         newList.push(newItem);
@@ -47,24 +52,21 @@ const TaskForm = () => {
     }
 
     return (
-        <>
-          <div className='card-body'>
-            <h3>Add an Item ...</h3>
-            <form onSubmit={addItem}>
-              <div className='input-group'>
-                <div className='input-group-prepend'>
-                  <div className='input-group-text bg-primary text-white'>
-                    <i className="fas fa-book"></i>
-                  </div>
-                </div>
-                <input className='form-control text-capitalize' onChange={changeUserInput} value={userInput} type='text' placeholder='type item here ...' />
+      <div className='container card-body'>
+        <form onSubmit={addItem} className="d-flex justify-content-between">
+          <div className='input-group'>
+            <div className='input-group-prepend'>
+              <div className='input-group-text color text-white'>
+                <i className="fas fa-book"></i>
               </div>
-              <button className={`btn btn-block mt-2 font-weight-bold ${isEditing ? 'btn-secondary' : 'btn-primary'}`} >
-                {isEditing ? `Edit Item` : `Add Item`}
-              </button>
-            </form>
+            </div>
+            <input className='form-control' onChange={changeUserInput} value={userInput} type='text' placeholder='+ Add New Task here ...' />
           </div>
-        </>
+          {/* <button className={`w-25 btn text-white font-weight-bold ${isEditing ? 'btn-secondary' : 'color'}`} >
+            {isEditing ? `Edit Item` : `Add Item`}
+          </button> */}
+        </form>
+      </div>
     );
 }
 

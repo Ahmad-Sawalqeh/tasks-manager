@@ -10,6 +10,7 @@ import {
 const initialState = {
     userInput: '',
     list: [],
+    status: ['Not-Started', 'In-Progress', 'canceled', 'completed'],
     isEditing: false,
     editingItemId: 0,
     wantedListToShow: [],

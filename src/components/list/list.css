@@ -1,0 +1,55 @@
+
+  
+  .list-group{
+    margin: 0 20px;
+  }
+
+  .task{
+      flex-basis: 75%;
+  }
+
+  li.item{
+    transition: .5s;
+  }
+
+  .item:hover{
+    box-shadow: 0px 5px 10px 4px #aaa;
+  }
+
+  .fa-edit{
+    color: #218838;
+    cursor: pointer;
+  }
+
+.fa-trash{
+  color: #C82333;
+  cursor: pointer;
+}
+
+.status{
+  /* padding: 2px 8px; */
+  border-radius: 6px;
+  border: 1px solid #eee;
+  margin: auto 0;
+  width: 102px;
+}
+
+.Not-Started{
+  background-color: #f47721 !important;
+  /* color: white; */
+}
+
+.In-Progress{
+  background-color: #00a4e4 !important;
+  /* color: white; */
+}
+
+.canceled{
+  background-color: #ed1b2e !important;
+  /* color: white; */
+}
+
+.completed{
+  background-color: #0abf53 !important;
+  /* color: white; */
+}

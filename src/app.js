@@ -1,7 +1,5 @@
 import React from 'react';
 import { useSelector } from "react-redux";
-
-import TaskForm from './components/taskForm';
 import TasksBoard from './components/tasksBoard';
 import './app.css';
 
@@ -26,11 +24,11 @@ function App(){
     <>
       <div className='container mt-5'>
         <div className='card'>
-          <h1 className='m-3 font-weight-bold'>My List</h1>
-          <TaskForm />
-          {
+          <h1 className='my-5 font-weight-bold text-center'>Tasks Manager</h1>
+          <TasksBoard />
+          {/* {
             !isEditing && list[0] && <TasksBoard />
-          }
+          } */}
         </div>
       </div>
     </>
