@@ -13,7 +13,7 @@ const BottomControl = () => {
     const dispatch = useDispatch();
     
     function deleteCompletedItem(){
-        let newList = list.filter(item => !item.complete);
+        let newList = list.filter(item => item.currentStatus.state !== 'completed');
         dispatch(setList(newList));
         dispatch(setWantedListToShow(newList));
     }
@@ -31,21 +31,41 @@ const BottomControl = () => {
     function allCompletedItem(){
         const listCopy = [...list];
         let newList = listCopy.map(val => {
-            val.complete = true;
+            val.currentStatus = {
+                number: 3,
+                state : 'completed'
+            }
             return val;
         });
         dispatch(setList(newList));
         dispatch(setWantedListToShow(newList));
     }
 
+    function cancelAllItem(){
+        let newList = list.filter(item => item.currentStatus.state = 'canceled');
+        dispatch(setList(newList));
+        dispatch(setWantedListToShow(newList));
+    }
+
+    function itemsLeft (){
+        return wantedListToShow.filter(item => item.currentStatus.state).length;
+    }
+
     return (
-        <div className='text-right'>
+        <>
             {
-                wantedListToShow.some(oneItem => oneItem.complete) && <button className='btn btn-light m-1' onClick={deleteCompletedItem}>Remove Completed Tasks</button>
+                Boolean(itemsLeft ()) === true && (
+                    <div className='text-right m-3'>
+                        {
+                            wantedListToShow.some(oneItem => oneItem.currentStatus.state === 'completed') && <button className='btn btn-light m-1' onClick={deleteCompletedItem}>Remove Completed Tasks</button>
+                        }
+                        <button className='btn btn-light m-1' onClick={allCompletedItem}>Make all Tasks Completed</button>
+                        <button className='btn btn-light m-1' onClick={cancelAllItem}>Cancel all Tasks</button>
+                        <button className='btn btn-light m-1' onClick={clearList} >Clear List <i className="fas fa-trash"></i></button>
+                    </div>
+                )
             }
-            <button className='btn btn-light m-1' onClick={allCompletedItem}>Make all Tasks Completed</button>
-            <button className='btn btn-light m-1' onClick={clearList} >Clear List <i className="fas fa-trash"></i></button>
-        </div>
+        </>
     )
 }
 

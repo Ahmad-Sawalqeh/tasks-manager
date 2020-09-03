@@ -49,32 +49,45 @@ const List = () => {
         dispatch(setWantedListToShow(newList));
     }
 
+    function itemsLeft (){
+        return wantedListToShow.filter(item => item.currentStatus.state).length;
+    }
+
     return (
-        <ul className='list-group'>
-            <li className='py-2 my-1 d-flex justify-content-between'>
-                <h5 className="task my-auto ml-3">Task</h5>
-                <span>Status</span>
-                <span>Edit</span>
-                <span>Remove</span>
-            </li>
+        <>
             {
-                wantedListToShow.map((val, idx) =>{
-                    return(
-                        <li key={val.id} className='item py-2 my-1 d-flex justify-content-between' >
-                            <p className="task my-auto ml-3">{idx + 1}- {val.value}</p>
-                            <span 
-                                className={`${val.currentStatus.state} text-white bg-dark status py-1 px-2`} 
-                                onClick={() => taskStatus(val.id)} 
-                            >
-                                {val.currentStatus.state}
-                            </span>
-                            <i className="far fa-edit my-auto" onClick={()=>itemToEdit(val.id)}></i>
-                            <i className="fas fa-trash my-auto mr-3" onClick={()=>deleteItem(val.id)}></i>
+                Boolean(itemsLeft ()) === false ? (
+                    <p className='lead text-center font-weight-bold'>There is No tasks at this moment</p>
+                )
+                : (
+                    <ul className='list-group'>
+                        <li className='py-2 my-1 d-flex justify-content-between'>
+                            <span className="taskHead font-weight-bold my-auto ml-3">Task</span>
+                            <span className='statusHead font-weight-bold text-center'>Status</span>
+                            <span className='editHead font-weight-bold text-center'>Edit</span>
+                            <span className='removeHead font-weight-bold text-center'>Remove</span>
                         </li>
-                    );
-                })
+                        {
+                            wantedListToShow.map((val, idx) =>{
+                                return(
+                                    <li key={val.id} className={`leftBorder${val.currentStatus.state} item py-2 my-1 d-flex justify-content-between`} >
+                                        <p className="task my-auto ml-3">{idx + 1}- {val.value}</p>
+                                        <span 
+                                            className={`${val.currentStatus.state} text-white font-weight-bold bg-dark status py-1 text-center`} 
+                                            onClick={() => taskStatus(val.id)} 
+                                        >
+                                            {val.currentStatus.state}
+                                        </span>
+                                        <i className="far fa-edit my-auto mx-5 font-weight-bold text-center" onClick={()=>itemToEdit(val.id)}></i>
+                                        <i className="fas fa-trash my-auto mx-5 font-weight-bold text-center" onClick={()=>deleteItem(val.id)}></i>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
+                )
             }
-        </ul>
+        </>
     )
 }
 

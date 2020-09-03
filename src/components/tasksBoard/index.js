@@ -12,25 +12,25 @@ const TasksBoard = () => {
 
     const { list } = useSelector(state => state);
 
-    function itemsLeft (){
-        return list.filter(item => !item.complete).length;
-        // return wantedListToShow.filter(item => !item.complete).length;
-    }
-
     return (
         <>
-            <div className="d-flex">
-                <h3 className='mx-3 font-weight-bold'>Tasks Board</h3>
-                <TopControl />
+            <div className="row">
+                <div className='col-md-3 col-sm-12 pr-0'>
+                    <h3 className='ml-3 font-weight-bold'>Tasks Board</h3>
+                </div>
+                <div className='col-md-9 col-sm-12 p-0'>
+                    <TopControl />
+                </div>
             </div>
             <TaskForm />
-            <List />
-            {/* <BottomControl /> */}
-
-            
-            {/* <p className='lead text-center font-weight-bold'>
-                There is only <span className='text-primary'> {itemsLeft()} </span> items NOT completed yet
-            </p> */}
+            {
+                list[0] && (
+                    <>
+                        <List />
+                        <BottomControl />
+                    </>
+                )
+            }
         </>
     );
 }

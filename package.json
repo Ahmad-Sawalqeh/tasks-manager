@@ -1,6 +1,6 @@
 {
-  "name": "to-do",
-  "version": "0.1.0",
+  "name": "tasks-manager",
+  "version": "6.1.0",
   "private": true,
   "main": "src/index.js",
   "dependencies": {
