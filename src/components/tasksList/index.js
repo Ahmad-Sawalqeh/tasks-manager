@@ -1,6 +1,6 @@
-import React from 'react';
+import React from './node_modules/react';
 
-function ToDoList(props){
+function TasksList(props){
 
     const { list, completed, deleteItem, itemToEdit, itemsToShow, wantedListToShow, deleteCompletedItem, hideShowAllItems, toggleItems, allCompletedItem, clearList } = props;
 
@@ -12,7 +12,7 @@ function ToDoList(props){
     return (
         <>
             <div>
-                <h2 className='m-3 font-weight-bold text-center'>To Do List</h2>
+                <h2 className='m-3 font-weight-bold text-center'>Tasks board</h2>
                 <p className='lead text-center font-weight-bold'>
                     There is only <span className='text-primary'> {itemsLeft()} </span> items NOT completed yet
                 </p>
@@ -71,4 +71,4 @@ const List = props => {
     )
 }
 
-export default ToDoList;
+export default TasksList;

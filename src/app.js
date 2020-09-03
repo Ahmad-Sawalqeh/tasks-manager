@@ -4,18 +4,18 @@ import { v4 as randomId } from 'uuid';
 
 import { setUserInput, setIsEditing, setEditingItemId, setList, setWantedListToShow, setToggleItems,  } from "./actions/actionCreater.js";
 
-import ToDoForm from './components/todoform/todoform.js';
-import ToDoList from './components/todolist/todolist.js';
+import TaskForm from './components/taskForm';
+import TasksList from './components/tasksList';
 import './app.css';
 
 /*
-** To Do MVC
+** Task Manager MVC
   1. add item
   2. delete item
   3. edit item
-  4. clear to do list
+  4. clear tasks list
   5. complete one item
-  6. display to do list
+  6. display tasks list
   7. delete all completed items
   8. make all items complete, all at once
   9. show only completed/active/all items
@@ -124,7 +124,7 @@ function App(){
       <div className='container mt-5'>
         <div className='card'>
           <h1 className='m-3 font-weight-bold'>My List</h1>
-          <ToDoForm 
+          <TaskForm 
             changeUserInput={changeUserInput} 
             addToList={addToList} 
             userInput={userInput} 
@@ -132,7 +132,7 @@ function App(){
           />
           {
             !isEditing && list[0] &&
-              <ToDoList list={list} 
+              <TasksList list={list} 
                 completed={completed} 
                 deleteItem={deleteItem} 
                 itemToEdit={itemToEdit} 

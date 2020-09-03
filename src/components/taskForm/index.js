@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ToDoForm(props){
+function TaskForm(props){
     const {changeUserInput, addToList, userInput, isEditing } = props;
     return (
         <>
@@ -22,4 +22,4 @@ function ToDoForm(props){
     );
 }
 
-export default ToDoForm;
+export default TaskForm;
