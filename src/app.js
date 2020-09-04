@@ -1,10 +1,6 @@
-import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { v4 as randomId } from 'uuid';
-
-import { setUserInput, setIsEditing, setEditingItemId, setList, setWantedListToShow, setToggleItems,  } from "./actions/actionCreater.js";
-
-import TaskForm from './components/taskForm';
+import React, { useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { setList, setWantedListToShow } from './actions/actionCreater';
 import TasksBoard from './components/tasksBoard';
 import './app.css';
 
@@ -21,130 +17,89 @@ import './app.css';
   9. show only completed/active/all items
 */
 
+const initialList = {
+  "tasks": [
+       {
+          "id": 8688789987070970897,
+          "value": "create sitemap sketch, wireframe and mock-up.",
+          "currentStatus": {
+              "number": 3,
+              "state" : "completed"
+          },
+          "isEditing": false,
+      },
+      {
+          "id": 86887899875454545457,
+          "value": "select technoogies stack (programming languages, frameworks and CMS).",
+          "currentStatus": {
+              "number": 3,
+              "state" : "completed"
+          },
+          "isEditing": false,
+      },
+      {
+          "id": 65765686575454545457,
+          "value": "create colorfull page layouts and gets client's feedback also change the layout if required, test and upload the website to server.",
+          "currentStatus": {
+              "number": 1,
+              "state" : "In-Progress"
+          },
+          "isEditing": false,
+      },
+      {
+          "id": 657656478788487645457,
+          "value": "take 1 hour break before starting of building the initial website interface.",
+          "currentStatus": {
+              "number": 2,
+              "state" : "canceled"
+          },
+          "isEditing": false,
+      },
+      {
+          "id": 657656478788445435457,
+          "value": "build website by adding special features and interactivity.",
+          "currentStatus": {
+              "number": 0,
+              "state" : "Not-Started"
+          },
+          "isEditing": false,
+      },
+      {
+          "id": 6576589789988445435457,
+          "value": "get content ready with the power of SEO.",
+          "currentStatus": {
+              "number": 1,
+              "state" : "In-Progress"
+          },
+          "isEditing": false,
+      },
+      {
+          "id": 6578889789988445435457,
+          "value": "fix bugs ASAP and keep it up to date.",
+          "currentStatus": {
+              "number": 0,
+              "state" : "Not-Started"
+          },
+          "isEditing": false,
+      }
+  ]
+}
+
 function App(){
 
-  const { userInput, list, isEditing, editingItemId, wantedListToShow, toggleItems } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  function changeUserInput(e){
-    let input = e.target.value;
-    dispatch(setUserInput(input));
-  }
-
-  function addToList(){
-    if(userInput === '') return;
-    let newList;
-    if(isEditing && editingItemId !== 0){
-      let listCopy = [...list];
-      newList = listCopy.map(val => {
-        if(val.id === editingItemId) val.value = userInput;
-        return val;
-      });
-      dispatch(setIsEditing(!isEditing));
-      dispatch(setEditingItemId(0));
-    }else{
-      const newItem = {
-        id: randomId(),
-        complete : false,
-        value: userInput
-      }
-      newList = [...list];
-      newList.push(newItem);
-    }
-    dispatch(setList(newList));
-    dispatch(setWantedListToShow(newList));
-    dispatch(setUserInput(''));
-  }
-
-  function deleteItem(id){
-    const newlist = [...list];
-    const updateList = newlist.filter(val => val.id !== id);
-    dispatch(setList(updateList));
-    dispatch(setWantedListToShow(updateList));
-  }
-
-  function itemToEdit(id){
-    const listCopy = [...list];
-    const editingItem = listCopy.find(val => val.id === id);
-    let itemvalue = editingItem.value;
-    let itemId = editingItem.id;
-    dispatch(setUserInput(itemvalue));
-    dispatch(setIsEditing(!isEditing));
-    dispatch(setEditingItemId(itemId));
-  }
-
-  function completed(id){
-    const listCopy = [...list];
-    let newList = listCopy.map(val => {
-      if(val.id === id) val.complete = !val.complete;
-      return val;
-    });
-    dispatch(setList(newList));
-    dispatch(setWantedListToShow(newList));
-  }
-
-  function itemsToShow(choise){
-    if(choise === 'active') {
-      dispatch(setWantedListToShow(list.filter(item => !item.complete)));
-    }else if(choise === 'completed'){
-      dispatch(setWantedListToShow(list.filter(item => item.complete)));
-    }else if(choise === 'all'){
-      dispatch(setWantedListToShow(list));
-    }
-  }
-
-  function deleteCompletedItem(){
-    let newList = list.filter(item => !item.complete);
-    dispatch(setList(newList));
-    dispatch(setWantedListToShow(newList));
-  }
-
-  function clearList(){
-    dispatch(setList([]));
-    dispatch(setWantedListToShow([]));
-  }
-
-  function hideShowAllItems(){
-    toggleItems ? dispatch(setWantedListToShow(list)) : dispatch(setWantedListToShow([]));
-    dispatch(setToggleItems(!toggleItems));
-  }
-
-  function allCompletedItem(){
-    const listCopy = [...list];
-    let newList = listCopy.map(val => {
-      val.complete = true;
-      return val;
-    });
-    dispatch(setList(newList));
-    dispatch(setWantedListToShow(newList));
-  }
+  useEffect(() => {
+    dispatch(setList(initialList.tasks))
+    dispatch(setWantedListToShow(initialList.tasks));
+  }, [dispatch])
 
   return (
     <>
       <div className='container mt-5'>
         <div className='card'>
-          <h1 className='m-3 font-weight-bold'>My List</h1>
-          <TaskForm 
-            changeUserInput={changeUserInput} 
-            addToList={addToList} 
-            userInput={userInput} 
-            isEditing={isEditing}
-          />
-          {
-            !isEditing && list[0] &&
-              <TasksBoard list={list} 
-                completed={completed} 
-                deleteItem={deleteItem} 
-                itemToEdit={itemToEdit} 
-                itemsToShow={itemsToShow} 
-                wantedListToShow={wantedListToShow} 
-                deleteCompletedItem={deleteCompletedItem}
-                hideShowAllItems={hideShowAllItems}
-                toggleItems={toggleItems}
-                allCompletedItem={allCompletedItem}
-                clearList={clearList}
-              />
-          }
+          <h1 className='my-5 font-weight-bold text-center'>Tasks Manager</h1>
+          <TasksBoard />
         </div>
       </div>
     </>

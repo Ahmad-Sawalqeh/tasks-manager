@@ -1,24 +1,57 @@
 import React from 'react';
+import { v4 as randomId } from 'uuid';
+import { useSelector, useDispatch } from "react-redux";
 
-function TaskForm(props){
-    const {changeUserInput, addToList, userInput, isEditing } = props;
+import { 
+  setUserInput, 
+  setList, 
+  setWantedListToShow, 
+} from "./../../actions/actionCreater.js";
+
+import './taskForm.css'
+
+const TaskForm = () => {
+
+    const { userInput, list } = useSelector(state => state);
+    const dispatch = useDispatch();
+
+    function changeUserInput(e){
+      let input = e.target.value;
+      dispatch(setUserInput(input));
+    }
+
+    function addItem(e){
+      e.preventDefault();
+      if(userInput === '') return;
+      let newList = [...list];
+      const newItem = {
+        id: randomId(),
+        value: userInput,
+        currentStatus: {
+          number: 0,
+          state : 'Not-Started'
+        },
+        isEditing: false
+      }
+      newList.push(newItem);
+      dispatch(setList(newList));
+      dispatch(setWantedListToShow(newList));
+      dispatch(setUserInput(''));
+    }
+
     return (
-        <>
-          <div className='card-body'>
-            <h3>Add an Item ...</h3>
-            <div className='input-group'>
-              <div className='input-group-prepend'>
-                <div className='input-group-text bg-primary text-white'>
-                  <i className="fas fa-book"></i>
-                </div>
+      <div className='container card-body'>
+        <form onSubmit={addItem} className="d-flex justify-content-between">
+          <div className='input-group'>
+            <div className='input-group-prepend'>
+              <div className='input-group-text color text-white'>
+                <i className="fas fa-book"></i>
               </div>
-              <input className='form-control text-capitalize' onChange={changeUserInput} value={userInput} type='text' placeholder='type item here ...' />
             </div>
-            <button className={`btn btn-block mt-2 font-weight-bold ${isEditing ? 'btn-secondary' : 'btn-primary'}`} onClick={addToList} >
-              {isEditing ? `Edit Item` : `Add Item`}
-            </button>
+            <input className='form-control' onChange={changeUserInput} value={userInput} type='text' placeholder='+ Add New Task here ...' />
           </div>
-        </>
+        </form>
+      </div>
     );
 }
 

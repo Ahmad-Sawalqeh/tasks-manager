@@ -1,0 +1,9 @@
+.btn{
+    width: auto;
+    height: 40px;
+    border: 1px solid #eee;
+}
+
+.fa-trash.all{
+    color: white;
+}

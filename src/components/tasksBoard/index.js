@@ -1,26 +1,30 @@
 import React from 'react';
+// import { useSelector } from "react-redux";
+
+import './tasksBoard.css'
+
+import TopControl from '../control/topControl';
+import TaskForm from './../taskForm';
 import List from '../list';
-import Control from '../control';
+import BottomControl from '../control/bottomControl';
 
-function TasksBoard(props){
+const TasksBoard = () => {
 
-    const { list, completed, deleteItem, itemToEdit, itemsToShow, wantedListToShow, deleteCompletedItem, hideShowAllItems, toggleItems, allCompletedItem, clearList } = props;
-
-    function itemsLeft (){
-        return list.filter(item => !item.complete).length;
-        // return wantedListToShow.filter(item => !item.complete).length;
-    }
+    // const { list } = useSelector(state => state);
 
     return (
         <>
-            <div>
-                <h2 className='m-3 font-weight-bold text-center'>Tasks board</h2>
-                <p className='lead text-center font-weight-bold'>
-                    There is only <span className='text-primary'> {itemsLeft()} </span> items NOT completed yet
-                </p>
-                <List wantedListToShow={wantedListToShow} completed={completed} itemToEdit={itemToEdit} deleteItem={deleteItem} />
-                <Control wantedListToShow={wantedListToShow} hideShowAllItems={hideShowAllItems} itemsToShow={itemsToShow} toggleItems={toggleItems} deleteCompletedItem={deleteCompletedItem} clearList={clearList} allCompletedItem={allCompletedItem} />
+            <div className="row">
+                <div className='col-md-3 col-sm-12 pr-0'>
+                    <h3 className='ml-3 font-weight-bold'>Tasks Board</h3>
+                </div>
+                <div className='col-md-9 col-sm-12 p-0'>
+                    <TopControl />
+                </div>
             </div>
+            <TaskForm />
+            <List />
+            <BottomControl />
         </>
     );
 }
