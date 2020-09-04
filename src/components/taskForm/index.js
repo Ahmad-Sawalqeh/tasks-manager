@@ -4,8 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { 
   setUserInput, 
-  setIsEditing, 
-  setEditingItemId, 
   setList, 
   setWantedListToShow, 
 } from "./../../actions/actionCreater.js";
@@ -14,7 +12,7 @@ import './taskForm.css'
 
 const TaskForm = () => {
 
-    const { userInput, list, isEditing, editingItemId, } = useSelector(state => state);
+    const { userInput, list } = useSelector(state => state);
     const dispatch = useDispatch();
 
     function changeUserInput(e){
@@ -25,27 +23,17 @@ const TaskForm = () => {
     function addItem(e){
       e.preventDefault();
       if(userInput === '') return;
-      let newList;
-      if(isEditing && editingItemId !== 0){
-        let listCopy = [...list];
-        newList = listCopy.map(val => {
-          if(val.id === editingItemId) val.value = userInput;
-          return val;
-        });
-        dispatch(setIsEditing(!isEditing));
-        dispatch(setEditingItemId(0));
-      }else{
-        const newItem = {
-          id: randomId(),
-          value: userInput,
-          currentStatus: {
-            number: 0,
-            state : 'Not-Started'
-          }
-        }
-        newList = [...list];
-        newList.push(newItem);
+      let newList = [...list];
+      const newItem = {
+        id: randomId(),
+        value: userInput,
+        currentStatus: {
+          number: 0,
+          state : 'Not-Started'
+        },
+        isEditing: false
       }
+      newList.push(newItem);
       dispatch(setList(newList));
       dispatch(setWantedListToShow(newList));
       dispatch(setUserInput(''));
@@ -62,9 +50,6 @@ const TaskForm = () => {
             </div>
             <input className='form-control' onChange={changeUserInput} value={userInput} type='text' placeholder='+ Add New Task here ...' />
           </div>
-          {/* <button className={`w-25 btn text-white font-weight-bold ${isEditing ? 'btn-secondary' : 'color'}`} >
-            {isEditing ? `Edit Item` : `Add Item`}
-          </button> */}
         </form>
       </div>
     );

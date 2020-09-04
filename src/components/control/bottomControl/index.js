@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { 
   setList, 
   setWantedListToShow, 
-  setToggleItems, 
 } from "../../../actions/actionCreater.js";
+
+import './bottomControl.css'
 
 const BottomControl = () => {
 
-    const { list, wantedListToShow, toggleItems } = useSelector(state => state);
+    const { list, wantedListToShow } = useSelector(state => state);
     const dispatch = useDispatch();
     
     function deleteCompletedItem(){
@@ -21,11 +22,6 @@ const BottomControl = () => {
     function clearList(){
         dispatch(setList([]));
         dispatch(setWantedListToShow([]));
-    }
-
-    function hideShowAllItems(){
-        toggleItems ? dispatch(setWantedListToShow(list)) : dispatch(setWantedListToShow([]));
-        dispatch(setToggleItems(!toggleItems));
     }
 
     function allCompletedItem(){
@@ -57,11 +53,11 @@ const BottomControl = () => {
                 Boolean(itemsLeft ()) === true && (
                     <div className='text-right m-3'>
                         {
-                            wantedListToShow.some(oneItem => oneItem.currentStatus.state === 'completed') && <button className='btn btn-light m-1' onClick={deleteCompletedItem}>Remove Completed Tasks</button>
+                            wantedListToShow.some(oneItem => oneItem.currentStatus.state === 'completed') && <button className='btn btn-dark m-1' onClick={deleteCompletedItem}>Remove Completed Tasks</button>
                         }
-                        <button className='btn btn-light m-1' onClick={allCompletedItem}>Make all Tasks Completed</button>
-                        <button className='btn btn-light m-1' onClick={cancelAllItem}>Cancel all Tasks</button>
-                        <button className='btn btn-light m-1' onClick={clearList} >Clear List <i className="fas fa-trash"></i></button>
+                        <button className='btn btn-dark m-1' onClick={allCompletedItem}>Make all Tasks Completed</button>
+                        <button className='btn btn-dark m-1' onClick={cancelAllItem}>Cancel all Tasks</button>
+                        <button className='btn btn-dark m-1' onClick={clearList} >Clear List <i className="fas fa-trash all"></i></button>
                     </div>
                 )
             }

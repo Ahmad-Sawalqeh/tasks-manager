@@ -1,0 +1,44 @@
+
+.form-control.edit{
+    background-color: white !important;  
+}
+
+.editColor{
+    color: white !important ;
+}
+.iconColorNot-Started{
+    background-color: #f47721;
+}
+.iconColorIn-Progress{
+    background-color: #00a4e4;
+}
+.iconColorcanceled{
+    background-color: #ed1b2e;
+}
+.iconColorcompleted{
+    background-color: #0abf53;
+}
+
+.Not-Started{
+    border-top: 2px dashed #f47721;
+    border-right: 2px dashed #f47721;
+    border-bottom: 2px dashed #f47721;
+}
+
+.In-Progress{
+    border-top: 2px dashed #00a4e4;
+    border-right: 2px dashed #00a4e4;
+    border-bottom: 2px dashed #00a4e4;
+}
+
+.canceled{
+    border-top: 2px dashed #ed1b2e;
+    border-right: 2px dashed #ed1b2e;
+    border-bottom: 2px dashed #ed1b2e;
+}
+  
+.completed{
+    border-top: 2px dashed #0abf53;
+    border-right: 2px dashed #0abf53;
+    border-bottom: 2px dashed #0abf53;
+}

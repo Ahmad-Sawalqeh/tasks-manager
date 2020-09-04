@@ -1,10 +1,8 @@
 import {
     SET_USER_INPUT,
     SET_LIST,
-    SET_IS_EDITING,
-    SET_EDITING_ITEM_ID,
+    SET_EDIT,
     SET_WANTED_LIST_TO_SHOW,
-    SET_TOGGLE_ITEMS
   } from "./actionTypes.js";
 
 export const setUserInput = input => {
@@ -21,17 +19,11 @@ export const setList = list => {
   };
 };
 
-export const setIsEditing = isEditing => {
+export const setEdit = editedItem => {
   return {
-    type: SET_IS_EDITING,
-    payload: isEditing
-  };
-};
+    type: SET_EDIT,
+    payload: editedItem
 
-export const setEditingItemId = id => {
-  return {
-    type: SET_EDITING_ITEM_ID,
-    payload: id
   };
 };
 
@@ -39,12 +31,5 @@ export const setWantedListToShow = list => {
   return {
     type: SET_WANTED_LIST_TO_SHOW,
     payload: list
-  };
-};
-
-export const setToggleItems = toggle => {
-  return {
-    type: SET_TOGGLE_ITEMS,
-    payload: toggle
   };
 };

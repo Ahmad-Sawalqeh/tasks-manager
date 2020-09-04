@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import './tasksBoard.css'
 
@@ -10,7 +10,7 @@ import BottomControl from '../control/bottomControl';
 
 const TasksBoard = () => {
 
-    const { list } = useSelector(state => state);
+    // const { list } = useSelector(state => state);
 
     return (
         <>
@@ -23,14 +23,8 @@ const TasksBoard = () => {
                 </div>
             </div>
             <TaskForm />
-            {
-                list[0] && (
-                    <>
-                        <List />
-                        <BottomControl />
-                    </>
-                )
-            }
+            <List />
+            <BottomControl />
         </>
     );
 }
