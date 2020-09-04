@@ -14,7 +14,7 @@ import './app.css';
   6. display tasks list
   7. delete all completed items
   8. make all items complete, all at once
-  9. show only completed/active/all items
+  9. show only completed/In-Progress/canceled/Not-Started/all items
 */
 
 const initialList = {

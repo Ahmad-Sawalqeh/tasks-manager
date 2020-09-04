@@ -88,7 +88,7 @@ const List = () => {
                         {
                             wantedListToShow.map((val, idx) =>{
                                 return(
-                                    <li key={val.id} className={`leftBorder${val.currentStatus.state} ${val.isEditing ? 'highlight' : ''} item py-2 my-1 d-flex justify-content-between`} >
+                                    <li key={val.id} className={`leftBorder${val.currentStatus.state} ${val.currentStatus.state === 'canceled' ? 'alert-danger' : ''} ${val.isEditing ? 'highlight' : ''} item py-2 my-1 d-flex justify-content-between`} >
                                         {
                                             val.isEditing ?
                                                 <EditForm id={val.id} borderColor={val.currentStatus.state} />
