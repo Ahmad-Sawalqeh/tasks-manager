@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TasksStatistics from './components/tasksStatistics';
 import TasksBoard from './components/tasksBoard';
 import './app.css';
