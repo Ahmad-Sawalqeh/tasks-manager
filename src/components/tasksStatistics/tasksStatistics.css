@@ -1,0 +1,23 @@
+.statisticSpan{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.not-started-span{
+    background-color: #f47721;
+}
+  
+.in-progress-span{
+    background-color: #00a4e4;
+}
+
+.canceled-span{
+    background-color: #ed1b2e;
+}
+
+.completed-span{
+    background-color: #0abf53;
+}

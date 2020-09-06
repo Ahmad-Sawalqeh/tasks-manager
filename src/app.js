@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { setList, setWantedListToShow } from './actions/actionCreater';
+import TasksStatistics from './components/tasksStatistics';
 import TasksBoard from './components/tasksBoard';
 import './app.css';
 
@@ -92,14 +93,18 @@ function App(){
   useEffect(() => {
     dispatch(setList(initialList.tasks))
     dispatch(setWantedListToShow(initialList.tasks));
-  }, [dispatch])
+  }, [])
 
   return (
     <>
-      <div className='container mt-5'>
-        <div className='card'>
-          <h1 className='my-5 font-weight-bold text-center'>Tasks Manager</h1>
-          <TasksBoard />
+      <div className='container bg-light mt-3 rounded'>
+        <div className="row">
+          <div className='bg col-md-3 p-3 text-light'>
+            <TasksStatistics />
+          </div>
+          <div className='col-md-9 py-3 px-2'>
+            <TasksBoard />
+          </div>
         </div>
       </div>
     </>

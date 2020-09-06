@@ -4,41 +4,66 @@ import { useSelector, useDispatch } from "react-redux";
 import { 
   setList, 
   setWantedListToShow, 
+  setCounter
 } from "../../../actions/actionCreater.js";
 
 import './bottomControl.css'
 
 const BottomControl = () => {
 
-    const { list, wantedListToShow } = useSelector(state => state);
+    const { list, wantedListToShow, counter } = useSelector(state => state);
     const dispatch = useDispatch();
     
     function deleteCompletedItem(){
-        let newList = list.filter(item => item.currentStatus.state !== 'completed');
+        let statistic, newList = list.filter(item => item.currentStatus.state !== 'completed');
+        statistic = {...counter, deleted: counter.deleted + (list.length - newList.length), completed: 0 }
+        dispatch(setCounter(statistic))
         dispatch(setList(newList));
         dispatch(setWantedListToShow(newList));
     }
 
     function clearList(){
+        let statistic = { ...counter,
+            deleted: counter.deleted + list.length,
+            NotStarted: 0,
+            InProgress: 0,
+            canceled: 0,
+            completed: 0,
+        }
+        dispatch(setCounter(statistic))
         dispatch(setList([]));
         dispatch(setWantedListToShow([]));
     }
 
     function allCompletedItem(){
         const listCopy = [...list];
-        let newList = listCopy.map(val => {
+        let statistic, newList = listCopy.map(val => {
             val.currentStatus = {
                 number: 3,
                 state : 'completed'
             }
             return val;
         });
+        statistic = { ...counter, 
+            NotStarted: 0,
+            InProgress: 0,
+            canceled: 0,
+            completed: counter.completed + (list.length - counter.completed),
+        }
+        dispatch(setCounter(statistic))
         dispatch(setList(newList));
         dispatch(setWantedListToShow(newList));
     }
 
     function cancelAllItem(){
-        let newList = list.filter(item => item.currentStatus.state = 'canceled');
+        let statistic, newList = list.filter(item => item.currentStatus.state = 'canceled');
+        statistic = { ...counter,
+            NotStarted: 0,
+            InProgress: 0,
+            canceled: counter.canceled + (list.length - counter.canceled),
+            completed: 0,
+        }
+        dispatch(setCounter(statistic))
         dispatch(setList(newList));
         dispatch(setWantedListToShow(newList));
     }

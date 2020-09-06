@@ -5,13 +5,14 @@ import {
   setList, 
   setWantedListToShow, 
   setEdit,
+  setCounter
 } from "./../../actions/actionCreater.js";
 
 import './editForm.css'
 
 const EditForm = (props) => {
     const { id, borderColor } = props;
-    const { list, edit } = useSelector(state => state);
+    const { list, edit, counter } = useSelector(state => state);
     const dispatch = useDispatch();
 
     function changeEditedUserInput(e){
@@ -37,6 +38,8 @@ const EditForm = (props) => {
             userInput: '',
             itemId: 0,
         }
+        let statistic = {...counter, edited: counter.edited + 1}
+        dispatch(setCounter(statistic))
         dispatch(setList(updateList));        
         dispatch(setWantedListToShow(updateList));
         dispatch(setEdit(resetEditedItem));

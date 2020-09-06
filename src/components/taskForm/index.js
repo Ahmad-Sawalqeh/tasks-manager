@@ -6,13 +6,14 @@ import {
   setUserInput, 
   setList, 
   setWantedListToShow, 
+  setCounter
 } from "./../../actions/actionCreater.js";
 
 import './taskForm.css'
 
 const TaskForm = () => {
 
-    const { userInput, list } = useSelector(state => state);
+    const { userInput, list, counter } = useSelector(state => state);
     const dispatch = useDispatch();
 
     function changeUserInput(e){
@@ -23,7 +24,7 @@ const TaskForm = () => {
     function addItem(e){
       e.preventDefault();
       if(userInput === '') return;
-      let newList = [...list];
+      let statistic, newList = [...list];
       const newItem = {
         id: randomId(),
         value: userInput,
@@ -34,6 +35,8 @@ const TaskForm = () => {
         isEditing: false
       }
       newList.push(newItem);
+      statistic = {...counter, NotStarted: counter.NotStarted + 1 }
+      dispatch(setCounter(statistic))
       dispatch(setList(newList));
       dispatch(setWantedListToShow(newList));
       dispatch(setUserInput(''));

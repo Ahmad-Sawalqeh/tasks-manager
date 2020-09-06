@@ -3,6 +3,7 @@ import {
     SET_LIST,
     SET_EDIT,
     SET_WANTED_LIST_TO_SHOW,
+    SET_COUNTER
   } from "./actionTypes.js";
 
 export const setUserInput = input => {
@@ -16,6 +17,13 @@ export const setList = list => {
   return {
     type: SET_LIST,
     payload: list
+  };
+};
+
+export const setCounter = statistic => {
+  return {
+    type: SET_COUNTER,
+    payload: statistic
   };
 };
 

@@ -7,21 +7,24 @@ import {
   setList, 
   setEdit,
   setWantedListToShow, 
+  setCounter
 } from "./../../actions/actionCreater.js";
 
 const List = () => {
 
-    const { list, wantedListToShow, status } = useSelector(state => state);
+    const { list, wantedListToShow, status, counter } = useSelector(state => state);
     const dispatch = useDispatch();
 
     function deleteItem(id){
         const newlist = [...list];
         const updateList = newlist.filter(val => val.id !== id);
+        let statistic = {...counter, deleted: counter.deleted + 1}
+        dispatch(setCounter(statistic))
         dispatch(setList(updateList));
         dispatch(setWantedListToShow(updateList));
     }
     
-    function itemToEdit(id){
+    function editItem(id){
         let oldListCopy, listCopy = [...list];
         let alreadyThereIsEditedItem = listCopy.some(val => val.isEditing);
         if(alreadyThereIsEditedItem){
@@ -52,17 +55,21 @@ const List = () => {
     
     function taskStatus(id){
         const listCopy = [...list];
-        let newList = listCopy.map(val => {
+        let statistic, currentItemState, previousItemState, newList = listCopy.map(val => {
             if(val.id === id) {
-                let preNumber = val.currentStatus.number
-                if(preNumber === 3) preNumber = -1
+                let preNumber = val.currentStatus.number === 3 ? 0 : val.currentStatus.number + 1;
                 val.currentStatus = {
-                    number: preNumber + 1,
-                    state : status[preNumber + 1]
+                    number: preNumber,
+                    state : status[preNumber]
                 }
+                if(preNumber === 0) preNumber = 4;
+                currentItemState = val.currentStatus.state.split('-').join('')
+                previousItemState = status[preNumber - 1].split('-').join('')
             }
             return val;
         });
+        statistic = {...counter, [currentItemState]: counter[currentItemState] + 1, [previousItemState]: counter[previousItemState] - 1}
+        dispatch(setCounter(statistic))
         dispatch(setList(newList));
         dispatch(setWantedListToShow(newList));
     }
@@ -94,14 +101,14 @@ const List = () => {
                                                 <EditForm id={val.id} borderColor={val.currentStatus.state} />
                                             :   (
                                                 <>
-                                                    <p className="task my-auto ml-3">{idx + 1}- {val.value}</p>
+                                                    <p className="task my-auto mx-3">{idx + 1}- {val.value}</p>
                                                     <span 
                                                         className={`${val.currentStatus.state} text-white font-weight-bold bg-dark status py-1 text-center`} 
                                                         onClick={() => taskStatus(val.id)} 
                                                     >
                                                         {val.currentStatus.state}
                                                     </span>
-                                                    <i className="far fa-edit my-auto mx-5 font-weight-bold text-center" onClick={()=>itemToEdit(val.id)}></i>
+                                                    <i className="far fa-edit my-auto mx-5 font-weight-bold text-center" onClick={()=>editItem(val.id)}></i>
                                                     <i className="fas fa-trash my-auto mx-5 font-weight-bold text-center" onClick={()=>deleteItem(val.id)}></i>
                                                 </>
                                             )
