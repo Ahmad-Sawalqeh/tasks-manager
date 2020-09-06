@@ -18,7 +18,9 @@ const List = () => {
     function deleteItem(id){
         const newlist = [...list];
         const updateList = newlist.filter(val => val.id !== id);
-        let statistic = {...counter, deleted: counter.deleted + 1}
+        let deletedItem = newlist.filter(val => val.id === id);
+        let itemStatus = deletedItem[0].currentStatus.state.split('-').join('')
+        let statistic = {...counter, deleted: counter.deleted + 1, [itemStatus]: counter[itemStatus] - 1}
         dispatch(setCounter(statistic))
         dispatch(setList(updateList));
         dispatch(setWantedListToShow(updateList));

@@ -27,19 +27,23 @@ const EditForm = (props) => {
         e.preventDefault()
 
         const listCopy = [...list];
+        let editedItem, doneEditedItem = edit.userInput;
         let updateList = listCopy.map(val => {
-            if(val.id === id) {
-                val.isEditing = !val.isEditing
-                val.value = edit.userInput
-            }
-            return val;
+          if(val.id === id) {
+            editedItem = val.value
+            val.isEditing = !val.isEditing
+            val.value = edit.userInput
+          }
+          return val;
         });
         let resetEditedItem = {
             userInput: '',
             itemId: 0,
         }
-        let statistic = {...counter, edited: counter.edited + 1}
-        dispatch(setCounter(statistic))
+        if(editedItem !== doneEditedItem){
+          let statistic = {...counter, edited: counter.edited + 1}
+          dispatch(setCounter(statistic))
+        }
         dispatch(setList(updateList));        
         dispatch(setWantedListToShow(updateList));
         dispatch(setEdit(resetEditedItem));
