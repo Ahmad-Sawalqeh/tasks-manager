@@ -6,7 +6,8 @@
             "currentStatus": {
                 "number": 3,
                 "state" : "completed"
-            }
+            },
+            "isEditing": false
         },
         {
             "id": 86887899875454545457,
@@ -14,15 +15,17 @@
             "currentStatus": {
                 "number": 3,
                 "state" : "completed"
-            }
+            },
+            "isEditing": false
         },
         {
             "id": 65765686575454545457,
-            "value": "create colorfull page layouts and gets client's feedback also change the layout if required.",
+            "value": "create colorfull page layouts and gets client's feedback also change the layout if required, test and upload the website to server.",
             "currentStatus": {
-                "number": 0,
-                "state" : "Not-Started"
-            }
+                "number": 1,
+                "state" : "In-Progress"
+            },
+            "isEditing": false
         },
         {
             "id": 657656478788487645457,
@@ -30,23 +33,26 @@
             "currentStatus": {
                 "number": 2,
                 "state" : "canceled"
-            }
+            },
+            "isEditing": false
         },
         {
             "id": 657656478788445435457,
             "value": "build website by adding special features and interactivity.",
             "currentStatus": {
-                "number": 1,
-                "state" : "In-Progress"
-            }
+                "number": 0,
+                "state" : "Not-Started"
+            },
+            "isEditing": false
         },
         {
             "id": 6576589789988445435457,
-            "value": "get content ready with the power of SEO, test and upload the website to server.",
+            "value": "get content ready with the power of SEO.",
             "currentStatus": {
                 "number": 1,
                 "state" : "In-Progress"
-            }
+            },
+            "isEditing": false
         },
         {
             "id": 6578889789988445435457,
@@ -54,7 +60,8 @@
             "currentStatus": {
                 "number": 0,
                 "state" : "Not-Started"
-            }
+            },
+            "isEditing": false
         }
     ]
-}
+  }
