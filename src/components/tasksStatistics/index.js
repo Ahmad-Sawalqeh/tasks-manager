@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import './tasksStatistics.css';
 
 
 const TasksStatistics = () => {
 
     const { list, counter: { deleted, edited, NotStarted, InProgress, canceled, completed } } = useSelector(state => state);
-    const dispatch = useDispatch();
 
     return (
         <div className='bg'>
