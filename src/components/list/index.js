@@ -57,7 +57,6 @@ const List = () => {
     
     function taskStatus(id){
         const listCopy = [...list];
-        console.log(listCopy.filter(val => val.id === id)[0].currentStatus)
         let statistic, currentItemState, previousItemState, newList = listCopy.map(val => {
             if(val.id === id) {
                 let preNumber = val.currentStatus.number === 3 ? 0 : val.currentStatus.number + 1;
@@ -65,7 +64,6 @@ const List = () => {
                     number: preNumber,
                     state : status[preNumber]
                 }
-                console.log(val.currentStatus)
                 if(preNumber === 0) preNumber = 4;
                 currentItemState = val.currentStatus.state.split('-').join('')
                 previousItemState = status[preNumber - 1].split('-').join('')
@@ -76,12 +74,6 @@ const List = () => {
         dispatch(setCounter(statistic))
         dispatch(setList(newList));
         dispatch(setWantedListToShow(newList));
-    }
-
-    function rightStatus(preNumber){
-        console.log({preNumber})
-        if(preNumber === 0) return 3;
-        return preNumber - 1
     }
 
     function itemsLeft (){
