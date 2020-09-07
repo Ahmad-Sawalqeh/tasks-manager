@@ -21,13 +21,18 @@ const TopControl = () => {
     }
 
     return (
-        <>
-          <button className='btn btn-light mx-1' onClick={() => itemsToShow('all')}>list</button>
-          <button className='btn btn-light mx-1' onClick={() => itemsToShow('Not-Started')}>Not-Started</button>
-          <button className='btn btn-light mx-1' onClick={() => itemsToShow('In-Progress')}>In-Progress</button>
-          <button className='btn btn-light mx-1' onClick={() => itemsToShow('canceled')}>Canceled</button>
-          <button className='btn btn-light mx-1' onClick={() => itemsToShow('completed')}>Completed</button>
-        </>
+      <>
+        {
+          list.length !== 0 && (
+          <>
+            <button className='btn btn-light mx-1' onClick={() => itemsToShow('all')}>list</button>
+            <button className='btn btn-light mx-1' onClick={() => itemsToShow('Not-Started')}>Not-Started</button>
+            <button className='btn btn-light mx-1' onClick={() => itemsToShow('In-Progress')}>In-Progress</button>
+            <button className='btn btn-light mx-1' onClick={() => itemsToShow('canceled')}>Canceled</button>
+            <button className='btn btn-light mx-1' onClick={() => itemsToShow('completed')}>Completed</button>
+          </>
+        )}
+      </>
     );
 }
 

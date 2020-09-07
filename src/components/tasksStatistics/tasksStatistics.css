@@ -1,3 +1,10 @@
+/* .status p{
+    width: 90%;
+    background-color: #fff;
+} */
+/* .status p > span{
+    width: 10%;
+} */
 .statisticSpan{
     display: inline-block;
     width: 15px;

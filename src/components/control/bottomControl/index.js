@@ -56,7 +56,13 @@ const BottomControl = () => {
     }
 
     function cancelAllItem(){
-        let statistic, newList = list.filter(item => item.currentStatus.state = 'canceled');
+        let statistic, listCopy = [...list], newList = listCopy.map(item => {
+            item.currentStatus = {
+                number: 2,
+                state : 'canceled'
+            }
+            return item
+        })
         statistic = { ...counter,
             NotStarted: 0,
             InProgress: 0,
@@ -76,13 +82,13 @@ const BottomControl = () => {
         <>
             {
                 Boolean(itemsLeft ()) === true && (
-                    <div className='text-right m-3'>
+                    <div className='d-flex justify-content-end'>
                         {
                             wantedListToShow.some(oneItem => oneItem.currentStatus.state === 'completed') && <button className='btn btn-dark m-1' onClick={deleteCompletedItem}>Remove Completed Tasks</button>
                         }
                         <button className='btn btn-dark m-1' onClick={allCompletedItem}>Make all Tasks Completed</button>
                         <button className='btn btn-dark m-1' onClick={cancelAllItem}>Cancel all Tasks</button>
-                        <button className='btn btn-dark m-1' onClick={clearList} >Clear List <i className="fas fa-trash all"></i></button>
+                        <button className='btn btn-dark m-1' onClick={clearList} >Clear List&nbsp;&nbsp;<i className="fas fa-trash all"></i></button>
                     </div>
                 )
             }
