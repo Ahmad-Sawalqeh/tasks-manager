@@ -6,8 +6,8 @@ import './tasksStatistics.css';
 
 const TasksStatistics = () => {
     return (
-        <div className='bg px-2'>
-            <h2 className='font-weight-bold text-left my-5'>Tasks statistics</h2>
+        <div className='bg px-2 mt-3'>
+            <h3 className='font-weight-bold text-left mb-4'>Tasks statistics</h3>
             <General />
             <hr className='bg-light my-4' />
             <Status />

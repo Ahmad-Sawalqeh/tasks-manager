@@ -9,13 +9,13 @@ const General = () => {
         <>
             <h5 className='font-weight-bold text-left my-3'>General :</h5>
             <div className='d-flex justify-content-between'>
-                <p>Number of Tasks : </p><p>{list.length}</p>
+                <p>Number of Tasks</p><p>{list.length}</p>
             </div>
             <div className='d-flex justify-content-between'>
-                <p>Deleted Tasks : </p><p>{deleted}</p>
+                <p>Deleted Tasks</p><p>{deleted}</p>
             </div>
             <div className='d-flex justify-content-between'>
-                <p>Edited Tasks : </p><p>{edited}</p>
+                <p>Edited Tasks</p><p>{edited}</p>
             </div>
         </>
     )

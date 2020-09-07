@@ -20,11 +20,12 @@ function App(){
   return (
     <>
       <div className='container bg-light mt-3 rounded'>
+        <h1 className='font-weight-bold text-center py-5'>Tasks Manager</h1>
         <div className="row">
           <div className='bg col-md-3 p-3 text-light'>
             <TasksStatistics />
           </div>
-          <div className='col-md-9 py-3 px-2'>
+          <div className='col-md-9 py-3 px-2 bg-borad'>
             <TasksBoard />
           </div>
         </div>

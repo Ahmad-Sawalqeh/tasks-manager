@@ -11,8 +11,7 @@ import BottomControl from '../control/bottomControl';
 const TasksBoard = () => {
     return (
         <>
-            <h1 className='font-weight-bold text-center my-4'>Tasks Manager</h1>
-            <div className="row">
+            <div className="row mt-3">
                 <div className='col-md-3 col-sm-12 pr-0'>
                     <h3 className='ml-3 font-weight-bold'>Tasks Board</h3>
                 </div>

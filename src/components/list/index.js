@@ -84,34 +84,40 @@ const List = () => {
         <>
             {
                 Boolean(itemsLeft ()) === false ? (
-                    <p className='lead text-center font-weight-bold'>There is No tasks at this moment</p>
+                    <p className='lead text-center font-weight-bold'>There is No Tasks at this moment</p>
                 )
                 : (
-                    <ul className='list-group'>
-                        <li className='py-2 my-1 d-flex justify-content-between'>
-                            <span className="taskHead font-weight-bold my-auto ml-3">Task</span>
-                            <span className='statusHead font-weight-bold text-center'>Status</span>
-                            <span className='editHead font-weight-bold text-center'>Edit</span>
-                            <span className='removeHead font-weight-bold text-center'>Remove</span>
+                    <ul className='m-4'>
+                        <li className='containerHead py-2 my-1 d-flex justify-content-between'>
+                            <span className="ml-3 my-auto w-75 font-weight-bold">Task</span>
+                            <span className='mr-3 statusHead font-weight-bold text-center'>Status</span>
+                            <span className='mr-2 w-auto font-weight-bold text-center'>Edit</span>
+                            <span className='w-auto font-weight-bold text-center'>Delete</span>
                         </li>
                         {
                             wantedListToShow.map((val, idx) =>{
                                 return(
-                                    <li key={val.id} className={`leftBorder${val.currentStatus.state} ${val.currentStatus.state === 'canceled' ? 'alert-danger' : ''} ${val.isEditing ? 'highlight' : ''} item py-2 my-1 d-flex justify-content-between`} >
+                                    <li 
+                                        key={val.id} 
+                                        className={`leftBorder${val.currentStatus.state} 
+                                            ${val.currentStatus.state === 'canceled' ? 'alert-danger' : ''} 
+                                            ${val.isEditing ? 'highlight' : ''} 
+                                            item py-2 my-2 d-flex justify-content-between`}
+                                        >
                                         {
                                             val.isEditing ?
                                                 <EditForm id={val.id} borderColor={val.currentStatus.state} />
                                             :   (
                                                 <>
-                                                    <p className="task my-auto mx-3">{idx + 1}- {val.value}</p>
+                                                    <p className="w-75 my-auto mx-3">{idx + 1}- {val.value}</p>
                                                     <span 
-                                                        className={`${val.currentStatus.state} text-white font-weight-bold bg-dark status py-1 text-center`} 
+                                                        className={`${val.currentStatus.state} text-white font-weight-bold bg-dark status py-1 text-center my-auto mr-1`} 
                                                         onClick={() => taskStatus(val.id)} 
                                                     >
                                                         {val.currentStatus.state}
                                                     </span>
-                                                    <i className="far fa-edit my-auto mx-5 font-weight-bold text-center" onClick={()=>editItem(val.id)}></i>
-                                                    <i className="fas fa-trash my-auto mx-5 font-weight-bold text-center" onClick={()=>deleteItem(val.id)}></i>
+                                                    <i className="far fa-edit my-auto mx-4 font-weight-bold text-center" onClick={()=>editItem(val.id)}></i>
+                                                    <i className="fas fa-trash my-auto mx-3 font-weight-bold text-center" onClick={()=>deleteItem(val.id)}></i>
                                                 </>
                                             )
                                         }                                        
