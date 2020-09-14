@@ -31,8 +31,11 @@ const EditForm = (props) => {
         let updateList = listCopy.map(val => {
           if(val.id === id) {
             editedItem = val.value
-            val.isEditing = !val.isEditing
-            val.value = edit.userInput
+            val = {
+              ...val,
+              value : edit.userInput,
+              isEditing : !val.isEditing
+            }
           }
           return val;
         });

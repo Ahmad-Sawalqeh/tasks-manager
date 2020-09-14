@@ -1,0 +1,38 @@
+.status{
+    border-radius: 6px;
+    max-width: 105px;
+    min-width: 102px;
+    cursor: pointer;
+}
+
+.fa-edit{
+    color: #218838;
+    max-width: 11px;
+    min-width: auto;
+    cursor: pointer;
+    flex-basis: 1%;
+}
+
+.fa-trash{
+    color: #C82333;
+    cursor: pointer;
+    max-width: 11px;
+    min-width: auto;
+    flex-basis: 1%;
+}
+
+.Not-Started{
+    background-color: #f47721 !important;
+}
+
+.In-Progress{
+    background-color: #00a4e4 !important;
+}
+
+.canceled{
+    background-color: #ed1b2e !important;
+}
+
+.completed{
+    background-color: #0abf53 !important;
+}

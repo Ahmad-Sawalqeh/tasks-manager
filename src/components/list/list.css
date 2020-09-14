@@ -19,53 +19,18 @@ li.item{
   box-shadow: 0px 5px 10px 4px #aaa;
 }
 
-.status{
-  border-radius: 6px;
-  max-width: 105px;
-  min-width: 102px;
-  cursor: pointer;
-}
-
-.fa-edit{
-  color: #218838;
-  max-width: 11px;
-  min-width: auto;
-  cursor: pointer;
-  flex-basis: 1%;
-}
-
-.fa-trash{
-  color: #C82333;
-  cursor: pointer;
-  max-width: 11px;
-  min-width: auto;
-  flex-basis: 1%;
-}
-
-.Not-Started{
-  background-color: #f47721 !important;
-}
 .leftBorderNot-Started{
   border-left: 5px solid #f47721;
 }
 
-.In-Progress{
-  background-color: #00a4e4 !important;
-}
 .leftBorderIn-Progress{
   border-left: 5px solid #00a4e4;
 }
 
-.canceled{
-  background-color: #ed1b2e !important;
-}
 .leftBordercanceled{
   border-left: 5px solid #ed1b2e;
 }
 
-.completed{
-  background-color: #0abf53 !important;
-}
 .leftBordercompleted{
   border-left: 5px solid #0abf53;
 }
